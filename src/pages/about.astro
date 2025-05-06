@@ -1,4 +1,5 @@
 ---
+import '../styles/global.css';
 import Navbar from './layout/navbar.astro';
 
 const pageTitle = 'About Me';
@@ -15,6 +16,10 @@ const skills = ['HTML', 'CSS', 'JavaScript', 'React', 'Astro', 'Writing Docs'];
 const happy = true;
 const finished = false;
 const goal = 3;
+
+const skillColor = 'navy';
+const fontWeight = 'bold';
+const textCase = 'uppercase';
 ---
 
 <html lang='en'>
@@ -24,6 +29,17 @@ const goal = 3;
     <meta name='viewport' content='width=device-width' />
     <meta name='generator' content={Astro.generator} />
     <title>{pageTitle}</title>
+    <style define:vars={{ skillColor, fontWeight, textCase }}>
+      h1 {
+        color: purple;
+        font-size: 4rem;
+      }
+      .skill {
+        color: var(--skillColor);
+        font-weight: var(--fontWeight);
+        text-transform: var(--textCase);
+      }
+    </style>
   </head>
   <body>
     <Navbar />
@@ -43,7 +59,7 @@ const goal = 3;
         </p>
       </section>
       <section>
-        <p>Here are a few facts about me:</p>
+        <h3>Here are a few facts about me:</h3>
         <ul>
           <li>My name is {identity.firstName}.</li>
           <li>
@@ -58,9 +74,9 @@ const goal = 3;
             )
           }
         </ul>
-        <p>My skills are:</p>
+        <h3>My skills are:</h3>
         <ul>
-          {skills.map((skill) => <li>{skill}</li>)}
+          {skills.map((skill) => <li class='skill'>{skill}</li>)}
         </ul>
         {happy && <p>I am happy to be learning Astro!</p>}
 
